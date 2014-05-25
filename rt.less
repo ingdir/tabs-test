@@ -1,0 +1,90 @@
+@block: ~".b-rt";
+
+.clearfix() {
+    &:before,
+    &:after {
+        content: "";
+        display: table;
+    }
+    &:after {
+        clear: both;
+    }
+}
+
+@{block} {
+    .clearfix();
+
+    font: normal 0px sans-serif;
+
+    position: relative;
+
+    border: solid 1px #ddd;
+
+    &__heading {
+        font-weight: bold;
+        font-size: 14px;
+        text-decoration: none;
+        line-height: 25px;
+
+        display: block;
+        padding: 3px 7px;
+        margin: 0 0 1px;
+
+        color: #000;
+        outline: none;
+        background-color: #ddd;
+
+        cursor: pointer;
+
+        &:last-of-type {
+            margin: 0;
+        }
+
+        &:active,
+        &:visited {
+            color: #000;
+        }
+
+        &:hover {
+            background-color: #efefef;
+            -webkit-transition: background-color 1s;
+            -moz-transition: background-color 1s;
+            transition: background-color 1s;
+        }
+
+        &:target {
+            color: #aaa;
+            background-color: #fff;
+
+            + @{block}__wrapper {
+                position: static;
+                display: block;
+            }
+        }
+    }
+
+    &__wrapper {
+        font-size: 12px;
+
+        position: absolute;
+        display: none;
+        padding: 3px 7px 10px;
+    }
+
+    @media (min-width: 768px) {
+        &__heading {
+            display: inline-block;
+            margin: 0 1px 0 0;
+        }
+
+        &__heading:target + &__wrapper {
+            display: block;
+            float: right;
+
+            // This is a Chrome-only hack to workaround a bug (?)
+            // in the way Chrome reapplies floating rules
+            display: -webkit-box;
+            display: -webkit-flex;
+        }
+    }
+}
