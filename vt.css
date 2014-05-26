@@ -1,6 +1,7 @@
 .b-vt {
   font: normal 14px sans-serif;
   display: table;
+  margin-bottom: 50px;
 }
 .b-vt__tabs,
 .b-vt__contents {
@@ -8,6 +9,9 @@
   vertical-align: top;
 }
 .b-vt__tabs {
+  border-style: solid;
+  border-width: 1px 0;
+  border-color: #dddddd;
   background-color: #dddddd;
 }
 .b-vt__tab {
@@ -15,21 +19,26 @@
   height: 40px;
   padding: 0 10px;
   line-height: 40px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
   overflow: hidden;
   text-overflow: ellipsis;
-  border-bottom: solid 1px #ffffff;
-}
-.b-vt__tab:last-of-type {
-  border-bottom: none;
+  border-style: solid;
+  border-width: 1px;
+  border-color: transparent transparent #ffffff;
+  background-color: #dddddd;
+  cursor: pointer;
 }
 .b-vt__tab_selected {
-  border-style: solid;
-  border-color: #dddddd;
-  border-width: 1px 0 1px 1px;
-  background-color: #ffffff;
+  border-color: transparent transparent #ffffff #dddddd;
+  background-color: #e4ff99;
+  cursor: default;
 }
 .b-vt__contents {
-  border: solid 1px #dddddd;
+  border-style: solid;
+  border-width: 1px 1px 1px 0;
+  border-color: #dddddd;
+  background-color: #e4ff99;
 }
 .b-vt__content {
   font-size: 12px;
@@ -38,4 +47,7 @@
 }
 .b-vt__content_selected {
   display: block;
+}
+.b-lorem {
+  display: none;
 }

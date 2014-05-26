@@ -2,6 +2,59 @@
 <html>
 <head>
     <link type="text/css" rel="stylesheet" href="vt.css" />
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script>
+    $(function() {
+        $('.b-vt').on('click', function(e) {
+            var $block = $(this),
+                $tab = $(e.target).closest('.b-vt__tab');
+
+            if ($tab.length && ! $tab.closest('.b-vt__tab_selected').length) {
+                var $allTabs = $block.find('.b-vt__tab'),
+                    $allContents = $block.find('.b-vt__content'),
+                    index = $allTabs.index($tab);
+
+                $allTabs
+                    .removeClass('b-vt__tab_selected')
+                    .eq(index)
+                    .addClass('b-vt__tab_selected');
+
+                $allContents
+                    .removeClass('b-vt__content_selected')
+                    .eq(index)
+                    .addClass('b-vt__content_selected');
+            }
+        });
+
+        var lorem =  $('.b-lorem').html();
+
+        $('.b-add-p').on('click', function() {
+            $('.b-vt__content_selected').append($('<p></p>').html(lorem));
+        });
+
+        $('.b-add-tab').on('click', function() {
+            var $tabs = $('.b-vt__tabs'),
+                tabIndex = $tabs.find('.b-vt__tab').length + 1,
+                $contents = $('.b-vt__contents');
+
+            $tabs.append(
+                $('<div></div>')
+                    .addClass('b-vt__tab')
+                    .text('Option ' + tabIndex)
+            );
+
+            $contents.append(
+                $('<div></div>')
+                    .addClass('b-vt__content')
+                    .html(lorem)
+                    .prepend(
+                        $('<h1></h1>')
+                            .text('Heading ' + tabIndex)
+                    )
+            );
+        });
+    });
+    </script>
 </head>
 <body>
 
@@ -13,7 +66,7 @@
     </div>
     <div class="b-vt__contents">
         <div class="b-vt__content b-vt__content_selected">
-            <h1>Heading 2</h1>
+            <h1>Heading 1</h1>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
         </div>
         <div class="b-vt__content">
@@ -21,10 +74,17 @@
             Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
         </div>
         <div class="b-vt__content">
-            <h1>Heading 2</h1>
+            <h1>Heading 3</h1>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
         </div>
     </div>
+</div>
+
+<button class="b-add-tab">Add +1 tab</button>
+<button class="b-add-p">Add +1 paragraph to content</button>
+
+<div class="b-lorem">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 </div>
 
 </body>
